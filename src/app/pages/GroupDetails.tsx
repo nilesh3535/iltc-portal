@@ -121,7 +121,7 @@ export function GroupDetails() {
                 <CardContent className="p-4">
                   <p className="text-sm text-gray-700 mb-3">Share invite link with travellers:</p>
                   <div className="flex gap-2">
-                    <Input value={inviteLink} readOnly className="flex-1" />
+                    <Input value={inviteLink} readOnly className="flex-2" />
                     <Button onClick={handleCopyLink} variant="secondary">
                       <Copy size={18} />
                     </Button>
