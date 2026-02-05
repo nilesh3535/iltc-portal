@@ -48,7 +48,7 @@ export function Login() {
             <img
               src={leftImage}
               alt="ILTC Travels"
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover rounded-l-2xl"
             />
           </div>
         </div>
