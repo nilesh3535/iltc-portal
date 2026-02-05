@@ -8,7 +8,6 @@ import {
   FileText,
   Plane,
 } from "lucide-react";
-import roundround from "../../assets/roundround.png";
 import {
   LineChart,
   Line,
@@ -146,16 +145,80 @@ export function SuperAdminDashboard() {
       </div>
 
       {/* Charts Row */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        {/* Tours Over Time */}
+        <Card>
+          <CardHeader>
+            <h4 className="text-lg text-gray-800">Tours Over Time</h4>
+          </CardHeader>
+          <CardContent>
+            <ResponsiveContainer width="100%" height={300}>
+              <LineChart data={toursOverTimeData}>
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="month" />
+                <YAxis />
+                <Tooltip />
+                <Legend />
+                <Line
+                  type="monotone"
+                  dataKey="tours"
+                  stroke="#3b82f6"
+                  strokeWidth={2}
+                />
+              </LineChart>
+            </ResponsiveContainer>
+          </CardContent>
+        </Card>
+
+        {/* Message Activity */}
+        <Card>
+          <CardHeader>
+            <h4 className="text-lg text-gray-800">
+              Message & Broadcast Activity
+            </h4>
+          </CardHeader>
+          <CardContent>
+            <ResponsiveContainer width="100%" height={300}>
+              <BarChart data={messageActivityData}>
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="day" />
+                <YAxis />
+                <Tooltip />
+                <Legend />
+                <Bar dataKey="messages" fill="#3b82f6" />
+                <Bar dataKey="broadcasts" fill="#14b8a6" />
+              </BarChart>
+            </ResponsiveContainer>
+          </CardContent>
+        </Card>
+      </div>
 
       {/* Tour Status Pie Chart */}
       <Card>
+        <CardHeader>
+          <h4 className="text-lg text-gray-800">Tour Status Distribution</h4>
+        </CardHeader>
         <CardContent>
           <ResponsiveContainer width="100%" height={300}>
-            <img
-              src={roundround}
-              alt="ILTC Travels"
-              className="w-full h-full object-cover rounded-sm"
-            />
+            <PieChart>
+              <Pie
+                data={tourStatusData}
+                cx="50%"
+                cy="50%"
+                labelLine={false}
+                label={({ name, percent }) =>
+                  `${name}: ${(percent * 100).toFixed(0)}%`
+                }
+                outerRadius={100}
+                dataKey="value"
+              >
+                {tourStatusData.map((entry, index) => (
+                  <Cell key={`cell-${index}`} fill={entry.fill} />
+                ))}
+              </Pie>
+              <Tooltip />
+              <Legend />
+            </PieChart>
           </ResponsiveContainer>
         </CardContent>
       </Card>

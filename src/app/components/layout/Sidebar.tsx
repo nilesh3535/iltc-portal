@@ -1,5 +1,5 @@
-import React from 'react';
-import { Link, useLocation } from 'react-router';
+import React from "react";
+import { Link, useLocation } from "react-router";
 import {
   LayoutDashboard,
   Users,
@@ -12,8 +12,8 @@ import {
   LogOut,
   ChevronLeft,
   ChevronRight,
-} from 'lucide-react';
-import { useAuth } from '../../context/AuthContext';
+} from "lucide-react";
+import { useAuth } from "../../context/AuthContext";
 
 interface MenuItem {
   label: string;
@@ -23,16 +23,39 @@ interface MenuItem {
 }
 
 const menuItems: MenuItem[] = [
-  { label: 'Dashboard', path: '/dashboard', icon: <LayoutDashboard size={20} /> },
-  { label: 'Groups', path: '/groups', icon: <Users size={20} /> },
-  { label: 'Staffs', path: '/staffs', icon: <UserCog size={20} />, superAdminOnly: true },
-  { label: 'Individual Chats', path: '/chats', icon: <MessageSquare size={20} /> },
-  { label: 'Broadcasts', path: '/broadcasts', icon: <Radio size={20} /> },
-  { label: 'Documents', path: '/documents', icon: <FileText size={20} /> },
-  { label: 'Reports', path: '/reports', icon: <BarChart3 size={20} />, superAdminOnly: true },
-  { label: 'Settings', path: '/settings', icon: <Settings size={20} />, superAdminOnly: true },
-];
+  {
+    label: "Dashboard",
+    path: "/dashboard",
+    icon: <LayoutDashboard size={20} />,
+  },
+  { label: "Groups", path: "/groups", icon: <Users size={20} /> },
+  {
+    label: "Staffs",
+    path: "/staffs",
+    icon: <UserCog size={20} />,
+    superAdminOnly: true,
+  },
+  {
+    label: "Individual Chats",
+    path: "/chats",
+    icon: <MessageSquare size={20} />,
+  },
 
+  { label: "Documents", path: "/documents", icon: <FileText size={20} /> },
+  {
+    label: "Reports",
+    path: "/reports",
+    icon: <BarChart3 size={20} />,
+    superAdminOnly: true,
+  },
+  {
+    label: "Settings",
+    path: "/settings",
+    icon: <Settings size={20} />,
+    superAdminOnly: true,
+  },
+];
+// { label: 'Broadcasts', path: '/broadcasts', icon: <Radio size={20} /> },
 interface SidebarProps {
   collapsed: boolean;
   onToggleCollapse: () => void;
@@ -43,13 +66,13 @@ export function Sidebar({ collapsed, onToggleCollapse }: SidebarProps) {
   const { user, logout } = useAuth();
 
   const filteredMenuItems = menuItems.filter(
-    (item) => !item.superAdminOnly || user?.role === 'super_admin'
+    (item) => !item.superAdminOnly || user?.role === "super_admin",
   );
 
   return (
     <aside
       className={`fixed left-0 top-0 h-screen bg-gradient-to-b from-blue-900 to-blue-800 text-white transition-all duration-300 ${
-        collapsed ? 'w-20' : 'w-64'
+        collapsed ? "w-20" : "w-64"
       } shadow-xl z-30`}
     >
       <div className="flex flex-col h-full">
@@ -59,7 +82,7 @@ export function Sidebar({ collapsed, onToggleCollapse }: SidebarProps) {
             <div>
               <h1 className="text-xl">ILTC Travels</h1>
               <p className="text-xs text-blue-200 mt-1">
-                {user?.role === 'super_admin' ? 'Super Admin' : 'Staff Panel'}
+                {user?.role === "super_admin" ? "Super Admin" : "Staff Panel"}
               </p>
             </div>
           )}
@@ -81,10 +104,10 @@ export function Sidebar({ collapsed, onToggleCollapse }: SidebarProps) {
                 to={item.path}
                 className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${
                   isActive
-                    ? 'bg-blue-700 text-white'
-                    : 'text-blue-100 hover:bg-blue-700/50'
+                    ? "bg-blue-700 text-white"
+                    : "text-blue-100 hover:bg-blue-700/50"
                 }`}
-                title={collapsed ? item.label : ''}
+                title={collapsed ? item.label : ""}
               >
                 <span className="flex-shrink-0">{item.icon}</span>
                 {!collapsed && <span>{item.label}</span>}
@@ -98,7 +121,7 @@ export function Sidebar({ collapsed, onToggleCollapse }: SidebarProps) {
           <button
             onClick={logout}
             className="flex items-center gap-3 px-4 py-3 rounded-lg text-blue-100 hover:bg-blue-700/50 transition-colors w-full"
-            title={collapsed ? 'Logout' : ''}
+            title={collapsed ? "Logout" : ""}
           >
             <LogOut size={20} />
             {!collapsed && <span>Logout</span>}
