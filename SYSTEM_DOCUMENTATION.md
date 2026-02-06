@@ -1,9 +1,11 @@
 # TourManager Admin Panel - System Documentation
 
 ## Overview
+
 A complete, modern, professional web admin panel for a tour management system with role-based access control.
 
 ## Design Style
+
 - Clean enterprise SaaS dashboard
 - Travel-tech inspired design
 - Light theme with soft shadows
@@ -17,26 +19,31 @@ A complete, modern, professional web admin panel for a tour management system wi
 ## Authentication System
 
 ### Login Credentials
+
 The system uses a single login for both Super Admin and Staff roles:
 
 **Super Admin:**
+
 - Email: admin@tourmanager.com
 - Password: admin123
 - Access: Full system access including staff management, reports, and settings
 
 **Staff:**
+
 - Email: staff@tourmanager.com
 - Password: staff123
 - Access: Limited to tour management, chats, broadcasts, and documents
 
 ### Role-Based Access Control
+
 - Menu items are automatically filtered based on user role
 - Super Admin-only pages: Staff Management, Reports, Settings
-- Shared pages: Dashboard, Groups, Individual Chats, Broadcasts, Documents
+- Shared pages: Dashboard, Groups, Private Chats, Broadcasts, Documents
 
 ## System Architecture
 
 ### Tech Stack
+
 - React 18.3.1
 - TypeScript
 - React Router 7 (Data Mode)
@@ -46,6 +53,7 @@ The system uses a single login for both Super Admin and Staff roles:
 - Sonner (toast notifications)
 
 ### Project Structure
+
 ```
 /src/app/
   ├── components/
@@ -79,6 +87,7 @@ The system uses a single login for both Super Admin and Staff roles:
 ### Super Admin Features
 
 #### 1. Super Admin Dashboard
+
 - Metric cards showing:
   - Total Tour Groups
   - Total Travellers
@@ -93,6 +102,7 @@ The system uses a single login for both Super Admin and Staff roles:
 - Date filters: Monthly / Yearly / Custom range
 
 #### 2. Staff Management
+
 - Complete CRUD operations for staff members
 - Staff list table with:
   - Name, Mobile, Email, Role, Status
@@ -105,6 +115,7 @@ The system uses a single login for both Super Admin and Staff roles:
 - Search functionality
 
 #### 3. Reports
+
 - Date range filtering
 - Key metrics:
   - Tours created over time
@@ -115,6 +126,7 @@ The system uses a single login for both Super Admin and Staff roles:
 - Visual charts and graphs
 
 #### 4. Settings
+
 - App Branding:
   - Application name
   - Logo upload
@@ -134,6 +146,7 @@ The system uses a single login for both Super Admin and Staff roles:
 ### Staff Features
 
 #### 5. Staff Dashboard
+
 - Quick stats:
   - My Active Tours
   - Upcoming Tours
@@ -146,6 +159,7 @@ The system uses a single login for both Super Admin and Staff roles:
 ### Shared Features
 
 #### 6. Groups Management
+
 - Card-based or table view of tour groups
 - Group information:
   - Tour Name, Description
@@ -161,9 +175,11 @@ The system uses a single login for both Super Admin and Staff roles:
 - Search and filter functionality
 
 #### 7. Group Details (Tab Layout)
+
 Five main tabs:
 
 **Travellers Tab:**
+
 - Traveller management table
 - Add/Edit/Delete travellers
 - Invite status tracking (Accepted / Pending / Declined)
@@ -172,6 +188,7 @@ Five main tabs:
 - Copy invite link functionality
 
 **Group Chat Tab:**
+
 - WhatsApp-style chat interface
 - Message bubbles with sender info
 - Support for:
@@ -184,12 +201,14 @@ Five main tabs:
 - Real-time message input
 
 **Private Chats Tab:**
+
 - Left panel: Traveller list
 - Right panel: Chat window
 - One-on-one messaging
 - Same attachment support as group chat
 
 **Documents Tab:**
+
 - Document upload functionality
 - File list with:
   - File name, type, size
@@ -199,11 +218,13 @@ Five main tabs:
 - Group-filtered document view
 
 **Settings Tab:**
+
 - Edit group information
 - Update dates
 - Modify group settings
 
-#### 8. Individual Chats
+#### 8. Private Chats
+
 - Split-screen layout
 - Left: Traveller list with search
 - Right: Chat window
@@ -212,6 +233,7 @@ Five main tabs:
 - Online status indicators
 
 #### 9. Broadcasts
+
 - Send announcements to all travellers in a group
 - Broadcast history with:
   - Group name
@@ -225,6 +247,7 @@ Five main tabs:
 - Broadcast statistics dashboard
 
 #### 10. Documents
+
 - Centralized document management
 - Search and filter by group
 - Document statistics:
@@ -237,6 +260,7 @@ Five main tabs:
 ## UI/UX Features
 
 ### Layout Structure
+
 - Fixed left sidebar with icons and text
 - Collapsible sidebar functionality
 - Top header with:
@@ -247,6 +271,7 @@ Five main tabs:
 - Responsive design
 
 ### Design Elements
+
 - Consistent card-based layout
 - Soft shadows for depth
 - Rounded corners (8-12px)
@@ -256,6 +281,7 @@ Five main tabs:
 - Professional typography hierarchy
 
 ### User Experience
+
 - Toast notifications for actions
 - Confirmation modals for destructive actions
 - Empty states with helpful messages
@@ -265,6 +291,7 @@ Five main tabs:
 - Keyboard shortcuts support (Enter to submit)
 
 ### Responsive Behavior
+
 - Desktop-first approach
 - Adapts to tablet and mobile screens
 - Sidebar collapses on smaller screens
@@ -274,6 +301,7 @@ Five main tabs:
 ## Data Flow
 
 ### Authentication
+
 1. User enters credentials on login page
 2. AuthContext validates against mock users
 3. User data stored in localStorage
@@ -282,12 +310,14 @@ Five main tabs:
 6. Redirects to dashboard on successful login
 
 ### State Management
+
 - React Context API for authentication
 - Local component state for UI interactions
 - localStorage for persistence
 - Mock data serves as backend simulation
 
 ### Routing
+
 - React Router Data Mode
 - Protected routes with role checking
 - Nested routes for layouts
@@ -297,6 +327,7 @@ Five main tabs:
 ## Mock Data
 
 The system includes comprehensive mock data:
+
 - 3 staff members (various roles and statuses)
 - 4 tour groups (different statuses)
 - 5 travellers (various invite statuses)
@@ -309,6 +340,7 @@ The system includes comprehensive mock data:
 ## Future Enhancements
 
 ### Suggested Features
+
 - Real-time chat with WebSocket integration
 - Push notifications system
 - Advanced reporting with custom date ranges
@@ -321,6 +353,7 @@ The system includes comprehensive mock data:
 - API integration documentation
 
 ### Technical Improvements
+
 - Implement proper backend API
 - Add database integration (Supabase recommended)
 - Real-time updates with WebSocket
@@ -333,6 +366,7 @@ The system includes comprehensive mock data:
 ## Development Notes
 
 ### Best Practices Followed
+
 - TypeScript for type safety
 - Component-based architecture
 - Separation of concerns
@@ -343,6 +377,7 @@ The system includes comprehensive mock data:
 - Accessibility considerations
 
 ### Testing Recommendations
+
 - Unit tests for components
 - Integration tests for flows
 - E2E tests for critical paths
@@ -353,12 +388,14 @@ The system includes comprehensive mock data:
 ## Support & Maintenance
 
 ### Browser Support
+
 - Chrome (latest)
 - Firefox (latest)
 - Safari (latest)
 - Edge (latest)
 
 ### Performance
+
 - Optimized bundle size
 - Lazy loading for routes
 - Image optimization

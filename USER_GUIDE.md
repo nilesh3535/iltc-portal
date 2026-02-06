@@ -9,11 +9,11 @@
    - You'll automatically be directed to the login page
 
 2. **Enter your credentials**
-   
+
    **For Super Admin access:**
    - Email: `admin@tourmanager.com`
    - Password: `admin123`
-   
+
    **For Staff access:**
    - Email: `staff@tourmanager.com`
    - Password: `staff123`
@@ -26,11 +26,13 @@
 The dashboard you see depends on your role:
 
 **Super Admin Dashboard shows:**
+
 - Comprehensive metrics (Total Groups, Travellers, Tours, Messages, Documents)
 - Charts showing trends and analytics
 - Date range filters for custom reporting
 
 **Staff Dashboard shows:**
+
 - Your active tours
 - Upcoming tours
 - Total travellers assigned to you
@@ -46,7 +48,7 @@ The left sidebar contains all main navigation options:
 - **Dashboard** - Home page with overview statistics
 - **Groups** - Manage all tour groups
 - **Staffs** - (Super Admin only) Manage team members
-- **Individual Chats** - Private messages with travellers
+- **Private Chats** - Private messages with travellers
 - **Broadcasts** - Send announcements to groups
 - **Documents** - Manage all tour documents
 - **Reports** - (Super Admin only) Analytics and exports
@@ -114,6 +116,7 @@ Click the arrow button at the top of the sidebar to collapse/expand it for more 
 #### Tracking Invite Status
 
 Travellers have three possible statuses:
+
 - 🟢 **Accepted** - Traveller has joined
 - 🟡 **Pending** - Invite sent, awaiting response
 - 🔴 **Declined** - Traveller declined the invite
@@ -134,7 +137,7 @@ Travellers have three possible statuses:
 
 #### Private Chats
 
-1. Navigate to **Individual Chats** from the sidebar
+1. Navigate to **Private Chats** from the sidebar
 2. Select a traveller from the left panel
 3. Chat window opens on the right
 4. Send messages and attachments just like group chat
@@ -155,6 +158,7 @@ All travellers in the selected group will receive the message.
 #### Viewing Broadcast History
 
 The Broadcasts page shows all previously sent messages with:
+
 - Date and time sent
 - Recipient count
 - Message content
@@ -234,19 +238,23 @@ Toggle the switch in the Status column to activate or deactivate a staff member.
 2. Configure sections:
 
 **App Branding:**
+
 - Change application name
 - Upload custom logo
 
 **File Upload Settings:**
+
 - Set maximum file size
 - Define allowed file types
 
 **Notification Preferences:**
+
 - Toggle email notifications
 - Toggle SMS notifications
 - Toggle push notifications
 
 **Default Tour Settings:**
+
 - Enable/disable chat by default
 - Enable/disable broadcasts by default
 - Auto-archive completed tours
@@ -320,6 +328,7 @@ Toggle the switch in the Status column to activate or deactivate a staff member.
 ## Support
 
 For technical support or questions:
+
 - Contact your system administrator
 - Refer to the System Documentation
 - Check for system updates

@@ -12,6 +12,9 @@ import {
   LogOut,
   ChevronLeft,
   ChevronRight,
+  MessageSquareReply,
+  MessagesSquare,
+  MessageSquareLock,
 } from "lucide-react";
 import { useAuth } from "../../context/AuthContext";
 
@@ -28,19 +31,23 @@ const menuItems: MenuItem[] = [
     path: "/dashboard",
     icon: <LayoutDashboard size={20} />,
   },
-  { label: "Groups", path: "/groups", icon: <Users size={20} /> },
   {
     label: "Staffs",
     path: "/staffs",
     icon: <UserCog size={20} />,
     superAdminOnly: true,
   },
+  { label: "Groups", path: "/groups", icon: <Users size={20} /> },
   {
-    label: "Individual Chats",
-    path: "/chats",
-    icon: <MessageSquare size={20} />,
+    label: "Group Chats",
+    path: "/groupchats",
+    icon: <MessagesSquare size={20} />,
   },
-
+  {
+    label: "Private Chats",
+    path: "/chats",
+    icon: <MessageSquareLock size={20} />,
+  },
   { label: "Documents", path: "/documents", icon: <FileText size={20} /> },
   {
     label: "Reports",

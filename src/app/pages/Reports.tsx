@@ -126,45 +126,7 @@ export function Reports() {
       </div>
 
       {/* Charts */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        {/* Tours Created */}
-        <Card>
-          <CardHeader>
-            <h4 className="text-lg text-gray-800">Tours Created Over Time</h4>
-          </CardHeader>
-          <CardContent>
-            <ResponsiveContainer width="100%" height={300}>
-              <LineChart data={reportsData.toursCreated}>
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="month" />
-                <YAxis />
-                <Tooltip />
-                <Legend />
-                <Line type="monotone" dataKey="count" stroke="#3b82f6" strokeWidth={2} />
-              </LineChart>
-            </ResponsiveContainer>
-          </CardContent>
-        </Card>
 
-        {/* Travellers Per Tour */}
-        <Card>
-          <CardHeader>
-            <h4 className="text-lg text-gray-800">Travellers Per Tour</h4>
-          </CardHeader>
-          <CardContent>
-            <ResponsiveContainer width="100%" height={300}>
-              <BarChart data={reportsData.travellersPerTour}>
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="tour" />
-                <YAxis />
-                <Tooltip />
-                <Legend />
-                <Bar dataKey="travellers" fill="#14b8a6" />
-              </BarChart>
-            </ResponsiveContainer>
-          </CardContent>
-        </Card>
-      </div>
 
       {/* Invite Status */}
       <Card>

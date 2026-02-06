@@ -1,18 +1,19 @@
-import { createBrowserRouter, Navigate } from 'react-router';
-import { Login } from './pages/Login';
-import { SuperAdminDashboard } from './pages/SuperAdminDashboard';
-import { StaffDashboard } from './pages/StaffDashboard';
-import { StaffManagement } from './pages/StaffManagement';
-import { Groups } from './pages/Groups';
-import { GroupDetails } from './pages/GroupDetails';
-import { Chats } from './pages/Chats';
-import { Broadcasts } from './pages/Broadcasts';
-import { Documents } from './pages/Documents';
-import { Reports } from './pages/Reports';
-import { Settings } from './pages/Settings';
-import { NotFound } from './pages/NotFound';
-import { DashboardLayout } from './components/layout/DashboardLayout';
-import { ProtectedRoute } from './components/ProtectedRoute';
+import { createBrowserRouter, Navigate } from "react-router";
+import { Login } from "./pages/Login";
+import { SuperAdminDashboard } from "./pages/SuperAdminDashboard";
+import { StaffDashboard } from "./pages/StaffDashboard";
+import { StaffManagement } from "./pages/StaffManagement";
+import { Groups } from "./pages/Groups";
+import { GroupDetails } from "./pages/GroupDetails";
+import { Chats } from "./pages/Chats";
+import { GroupChats } from "./pages/GroupChats";
+import { Broadcasts } from "./pages/Broadcasts";
+import { Documents } from "./pages/Documents";
+import { Reports } from "./pages/Reports";
+import { Settings } from "./pages/Settings";
+import { NotFound } from "./pages/NotFound";
+import { DashboardLayout } from "./components/layout/DashboardLayout";
+import { ProtectedRoute } from "./components/ProtectedRoute";
 
 // Wrapper for protected dashboard layout
 function ProtectedDashboardLayout({ title }: { title: string }) {
@@ -34,21 +35,25 @@ function SuperAdminDashboardLayout({ title }: { title: string }) {
 
 // Wrapper component to show different dashboards based on user role
 function DashboardWrapper() {
-  const userRole = localStorage.getItem('userRole') || 'staff';
-  return userRole === 'super_admin' ? <SuperAdminDashboard /> : <StaffDashboard />;
+  const userRole = localStorage.getItem("userRole") || "staff";
+  return userRole === "super_admin" ? (
+    <SuperAdminDashboard />
+  ) : (
+    <StaffDashboard />
+  );
 }
 
 export const router = createBrowserRouter([
   {
-    path: '/',
+    path: "/",
     element: <Navigate to="/login" replace />,
   },
   {
-    path: '/login',
+    path: "/login",
     element: <Login />,
   },
   {
-    path: '/dashboard',
+    path: "/dashboard",
     element: <ProtectedDashboardLayout title="Dashboard" />,
     children: [
       {
@@ -58,7 +63,7 @@ export const router = createBrowserRouter([
     ],
   },
   {
-    path: '/groups',
+    path: "/groups",
     element: <ProtectedDashboardLayout title="Tour Groups" />,
     children: [
       {
@@ -68,7 +73,7 @@ export const router = createBrowserRouter([
     ],
   },
   {
-    path: '/groups/:id',
+    path: "/groups/:id",
     element: <ProtectedDashboardLayout title="Group Details" />,
     children: [
       {
@@ -78,7 +83,7 @@ export const router = createBrowserRouter([
     ],
   },
   {
-    path: '/staffs',
+    path: "/staffs",
     element: <SuperAdminDashboardLayout title="Staff Management" />,
     children: [
       {
@@ -88,8 +93,8 @@ export const router = createBrowserRouter([
     ],
   },
   {
-    path: '/chats',
-    element: <ProtectedDashboardLayout title="Individual Chats" />,
+    path: "/chats",
+    element: <ProtectedDashboardLayout title="Private Chats" />,
     children: [
       {
         index: true,
@@ -98,7 +103,18 @@ export const router = createBrowserRouter([
     ],
   },
   {
-    path: '/broadcasts',
+    path: "/groupchats",
+    element: <ProtectedDashboardLayout title="Group Chats" />,
+    children: [
+      {
+        index: true,
+        element: <GroupChats />,
+      },
+    ],
+  },
+
+  {
+    path: "/broadcasts",
     element: <ProtectedDashboardLayout title="Broadcasts" />,
     children: [
       {
@@ -108,7 +124,7 @@ export const router = createBrowserRouter([
     ],
   },
   {
-    path: '/documents',
+    path: "/documents",
     element: <ProtectedDashboardLayout title="Documents" />,
     children: [
       {
@@ -118,7 +134,7 @@ export const router = createBrowserRouter([
     ],
   },
   {
-    path: '/reports',
+    path: "/reports",
     element: <SuperAdminDashboardLayout title="Reports" />,
     children: [
       {
@@ -128,7 +144,7 @@ export const router = createBrowserRouter([
     ],
   },
   {
-    path: '/settings',
+    path: "/settings",
     element: <SuperAdminDashboardLayout title="Settings" />,
     children: [
       {
@@ -138,7 +154,7 @@ export const router = createBrowserRouter([
     ],
   },
   {
-    path: '*',
+    path: "*",
     element: <NotFound />,
   },
 ]);

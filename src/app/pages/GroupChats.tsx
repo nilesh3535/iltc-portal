@@ -2,17 +2,19 @@ import React, { useState } from "react";
 import { Card, CardContent } from "../components/ui/Card";
 import { Input } from "../components/ui/Input";
 import { Button } from "../components/ui/Button";
-import { Search, Send, Paperclip, Image, FileText } from "lucide-react";
-import { mockTravellers } from "../utils/mockData";
-
-export function Chats() {
+import { Search, Send, Paperclip, Image, FileText, Upload } from "lucide-react";
+import { mockGroups } from "../utils/mockData";
+import { Modal } from "../components/ui/Modal";
+import { toast } from "sonner";
+export function GroupChats() {
   const [selectedTraveller, setSelectedTraveller] = useState<string | null>(
     null,
   );
+  const [isUploadDocOpen, setIsUploadDocOpen] = useState(false);
   const [message, setMessage] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
 
-  const filteredTravellers = mockTravellers.filter((t) =>
+  const filteredTravellers = mockGroups.filter((t) =>
     t.name.toLowerCase().includes(searchTerm.toLowerCase()),
   );
 
@@ -47,10 +49,8 @@ export function Chats() {
     <div className="space-y-6">
       {/* Header */}
       <div>
-        <h3 className="text-xl text-gray-800">Private Chats</h3>
-        <p className="text-sm text-gray-600 mt-1">
-          Private conversations with travellers
-        </p>
+        <h3 className="text-xl text-gray-800">Group Chats</h3>
+        <p className="text-sm text-gray-600 mt-1"></p>
       </div>
 
       {/* Chat Interface */}
@@ -66,7 +66,7 @@ export function Chats() {
                   size={18}
                 />
                 <Input
-                  placeholder="Search travellers..."
+                  placeholder="Search group..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                   className="pl-10"
@@ -93,7 +93,7 @@ export function Chats() {
                         {traveller.name}
                       </p>
                       <p className="text-xs text-gray-500">
-                        {traveller.mobile}
+                        Total travellers: {traveller.totalTravellers}
                       </p>
                     </div>
                     <span className="w-2 h-2 bg-green-500 rounded-full"></span>
@@ -112,18 +112,22 @@ export function Chats() {
                 {/* Chat Header */}
                 <div className="p-4 border-b border-gray-200 flex items-center gap-3">
                   <div className="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center text-white">
-                    {mockTravellers
+                    {mockGroups
                       .find((t) => t.id === selectedTraveller)
                       ?.name.charAt(0)}
                   </div>
                   <div>
                     <p className="text-sm text-gray-900">
-                      {
-                        mockTravellers.find((t) => t.id === selectedTraveller)
-                          ?.name
-                      }
+                      {mockGroups.find((t) => t.id === selectedTraveller)?.name}
                     </p>
-                    <p className="text-xs text-gray-500">Private Chat</p>
+                    <p className="text-xs text-gray-500">
+                      {" "}
+                      {
+                        mockGroups.find((t) => t.id === selectedTraveller)
+                          ?.totalTravellers
+                      }{" "}
+                      peoples
+                    </p>
                   </div>
                 </div>
 
@@ -157,13 +161,22 @@ export function Chats() {
                 {/* Message Input */}
                 <div className="p-4 border-t border-gray-200">
                   <div className="flex gap-2">
-                    <button className="p-2 text-gray-600 hover:bg-gray-100 rounded-lg">
+                    <button
+                      onClick={() => setIsUploadDocOpen(true)}
+                      className="p-2 text-gray-600 hover:bg-gray-100 rounded-lg"
+                    >
                       <Paperclip size={20} />
                     </button>
-                    <button className="p-2 text-gray-600 hover:bg-gray-100 rounded-lg">
+                    <button
+                      onClick={() => setIsUploadDocOpen(true)}
+                      className="p-2 text-gray-600 hover:bg-gray-100 rounded-lg"
+                    >
                       <Image size={20} />
                     </button>
-                    <button className="p-2 text-gray-600 hover:bg-gray-100 rounded-lg">
+                    <button
+                      onClick={() => setIsUploadDocOpen(true)}
+                      className="p-2 text-gray-600 hover:bg-gray-100 rounded-lg"
+                    >
                       <FileText size={20} />
                     </button>
                     <Input
@@ -194,6 +207,41 @@ export function Chats() {
           </CardContent>
         </Card>
       </div>
+      {/* Upload Document Modal */}
+      <Modal
+        isOpen={isUploadDocOpen}
+        onClose={() => setIsUploadDocOpen(false)}
+        title="Upload Document"
+        size="md"
+      >
+        <div className="space-y-4">
+          <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center">
+            <Upload size={40} className="mx-auto text-gray-400 mb-2" />
+            <p className="text-sm text-gray-600">
+              Drag and drop files here or click to browse
+            </p>
+            <p className="text-xs text-gray-500 mt-1">
+              Supports: PDF, Word, Excel, Images
+            </p>
+          </div>
+          <div className="flex justify-end gap-3">
+            <Button
+              variant="secondary"
+              onClick={() => setIsUploadDocOpen(false)}
+            >
+              Cancel
+            </Button>
+            <Button
+              onClick={() => {
+                toast.success("Document uploaded successfully");
+                setIsUploadDocOpen(false);
+              }}
+            >
+              Upload
+            </Button>
+          </div>
+        </div>
+      </Modal>
     </div>
   );
 }
