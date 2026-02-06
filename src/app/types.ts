@@ -1,6 +1,6 @@
 // Type definitions for the Tour Management System
 
-export type UserRole = 'super_admin' | 'staff';
+export type UserRole = "super_admin" | "staff";
 
 export interface User {
   id: string;
@@ -24,8 +24,9 @@ export interface Staff {
   name: string;
   mobile: string;
   email: string;
+  password: string;
   role: UserRole;
-  status: 'active' | 'inactive';
+  status: "active" | "inactive";
   permissions: Permission[];
 }
 
@@ -38,7 +39,7 @@ export interface TourGroup {
   totalTravellers: number;
   chatEnabled: boolean;
   broadcastEnabled: boolean;
-  status: 'active' | 'completed' | 'upcoming';
+  status: "active" | "completed" | "upcoming";
   assignedStaff?: string[];
 }
 
@@ -47,7 +48,7 @@ export interface Traveller {
   name: string;
   mobile: string;
   groupId: string;
-  inviteStatus: 'pending' | 'accepted' | 'declined';
+  inviteStatus: "pending" | "accepted" | "declined";
   joinedAt?: string;
 }
 
@@ -56,9 +57,9 @@ export interface Message {
   groupId: string;
   senderId: string;
   senderName: string;
-  senderRole: 'staff' | 'traveller';
+  senderRole: "staff" | "traveller";
   content: string;
-  type: 'text' | 'image' | 'document';
+  type: "text" | "image" | "document";
   fileUrl?: string;
   fileName?: string;
   timestamp: string;
