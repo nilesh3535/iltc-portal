@@ -1,28 +1,38 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router';
-import { Card, CardContent } from '../components/ui/Card';
-import { Button } from '../components/ui/Button';
-import { Modal } from '../components/ui/Modal';
-import { Input } from '../components/ui/Input';
-import { Toggle } from '../components/ui/Toggle';
-import { Plus, Search, Eye, Edit2, Trash2, Users, Calendar } from 'lucide-react';
-import { mockGroups } from '../utils/mockData';
-import { TourGroup } from '../types';
-import { toast } from 'sonner';
+import React, { useState } from "react";
+import { useNavigate } from "react-router";
+import { Card, CardContent } from "../components/ui/Card";
+import { Button } from "../components/ui/Button";
+import { Modal } from "../components/ui/Modal";
+import { Input } from "../components/ui/Input";
+import { Toggle } from "../components/ui/Toggle";
+import {
+  Plus,
+  Search,
+  Eye,
+  Edit2,
+  Trash2,
+  Users,
+  Calendar,
+} from "lucide-react";
+import { mockGroups } from "../utils/mockData";
+import { TourGroup } from "../types";
+import { toast } from "sonner";
 
 export function Groups() {
   const navigate = useNavigate();
   const [groupsList, setGroupsList] = useState<TourGroup[]>(mockGroups);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingGroup, setEditingGroup] = useState<TourGroup | null>(null);
-  const [searchTerm, setSearchTerm] = useState('');
-  const [showDeleteConfirm, setShowDeleteConfirm] = useState<string | null>(null);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [showDeleteConfirm, setShowDeleteConfirm] = useState<string | null>(
+    null,
+  );
 
   const [formData, setFormData] = useState({
-    name: '',
-    description: '',
-    startDate: '',
-    endDate: '',
+    name: "",
+    description: "",
+    startDate: "",
+    endDate: "",
     chatEnabled: true,
     broadcastEnabled: true,
   });
@@ -30,10 +40,10 @@ export function Groups() {
   const handleAddGroup = () => {
     setEditingGroup(null);
     setFormData({
-      name: '',
-      description: '',
-      startDate: '',
-      endDate: '',
+      name: "",
+      description: "",
+      startDate: "",
+      endDate: "",
       chatEnabled: true,
       broadcastEnabled: true,
     });
@@ -57,19 +67,19 @@ export function Groups() {
     if (editingGroup) {
       setGroupsList(
         groupsList.map((g) =>
-          g.id === editingGroup.id ? { ...g, ...formData } : g
-        )
+          g.id === editingGroup.id ? { ...g, ...formData } : g,
+        ),
       );
-      toast.success('Group updated successfully');
+      toast.success("Group updated successfully");
     } else {
       const newGroup: TourGroup = {
         id: String(Date.now()),
         ...formData,
         totalTravellers: 0,
-        status: 'upcoming',
+        status: "upcoming",
       };
       setGroupsList([...groupsList, newGroup]);
-      toast.success('Group created successfully');
+      toast.success("Group created successfully");
     }
     setIsModalOpen(false);
   };
@@ -77,30 +87,30 @@ export function Groups() {
   const handleDeleteGroup = (id: string) => {
     setGroupsList(groupsList.filter((g) => g.id !== id));
     setShowDeleteConfirm(null);
-    toast.success('Group deleted successfully');
+    toast.success("Group deleted successfully");
   };
 
   const handleToggleChat = (id: string, enabled: boolean) => {
     setGroupsList(
-      groupsList.map((g) => (g.id === id ? { ...g, chatEnabled: enabled } : g))
+      groupsList.map((g) => (g.id === id ? { ...g, chatEnabled: enabled } : g)),
     );
-    toast.success(`Chat ${enabled ? 'enabled' : 'disabled'}`);
+    toast.success(`Chat ${enabled ? "enabled" : "disabled"}`);
   };
 
   const filteredGroups = groupsList.filter((group) =>
-    group.name.toLowerCase().includes(searchTerm.toLowerCase())
+    group.name.toLowerCase().includes(searchTerm.toLowerCase()),
   );
 
   const getStatusColor = (status: string) => {
     switch (status) {
-      case 'active':
-        return 'bg-green-100 text-green-700';
-      case 'upcoming':
-        return 'bg-blue-100 text-blue-700';
-      case 'completed':
-        return 'bg-gray-100 text-gray-700';
+      case "active":
+        return "bg-green-100 text-green-700";
+      case "upcoming":
+        return "bg-blue-100 text-blue-700";
+      case "completed":
+        return "bg-gray-100 text-gray-700";
       default:
-        return 'bg-gray-100 text-gray-700';
+        return "bg-gray-100 text-gray-700";
     }
   };
 
@@ -122,7 +132,10 @@ export function Groups() {
 
       {/* Search */}
       <div className="relative">
-        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
+        <Search
+          className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"
+          size={20}
+        />
         <Input
           placeholder="Search groups..."
           value={searchTerm}
@@ -141,7 +154,9 @@ export function Groups() {
                   <h4 className="text-lg text-gray-900 mb-1">{group.name}</h4>
                   <p className="text-sm text-gray-600">{group.description}</p>
                 </div>
-                <span className={`px-3 py-1 rounded-full text-xs ${getStatusColor(group.status)}`}>
+                <span
+                  className={`px-3 py-1 rounded-full text-xs ${getStatusColor(group.status)}`}
+                >
                   {group.status}
                 </span>
               </div>
@@ -199,7 +214,7 @@ export function Groups() {
       <Modal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
-        title={editingGroup ? 'Edit Group' : 'Create New Group'}
+        title={editingGroup ? "Edit Group" : "Create New Group"}
         size="lg"
       >
         <div className="space-y-4">
@@ -211,10 +226,14 @@ export function Groups() {
             required
           />
           <div>
-            <label className="block text-sm text-gray-700 mb-1">Description</label>
+            <label className="block text-sm text-gray-700 mb-1">
+              Description
+            </label>
             <textarea
               value={formData.description}
-              onChange={(e) => setFormData({ ...formData, description: e.target.value })}
+              onChange={(e) =>
+                setFormData({ ...formData, description: e.target.value })
+              }
               placeholder="Describe the tour..."
               rows={3}
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -225,27 +244,28 @@ export function Groups() {
               label="Start Date"
               type="date"
               value={formData.startDate}
-              onChange={(e) => setFormData({ ...formData, startDate: e.target.value })}
+              onChange={(e) =>
+                setFormData({ ...formData, startDate: e.target.value })
+              }
               required
             />
             <Input
               label="End Date"
               type="date"
               value={formData.endDate}
-              onChange={(e) => setFormData({ ...formData, endDate: e.target.value })}
+              onChange={(e) =>
+                setFormData({ ...formData, endDate: e.target.value })
+              }
               required
             />
           </div>
           <div className="space-y-3">
             <Toggle
               enabled={formData.chatEnabled}
-              onChange={(enabled) => setFormData({ ...formData, chatEnabled: enabled })}
+              onChange={(enabled) =>
+                setFormData({ ...formData, chatEnabled: enabled })
+              }
               label="Enable Group Chat"
-            />
-            <Toggle
-              enabled={formData.broadcastEnabled}
-              onChange={(enabled) => setFormData({ ...formData, broadcastEnabled: enabled })}
-              label="Enable Broadcast"
             />
           </div>
 
@@ -254,7 +274,7 @@ export function Groups() {
               Cancel
             </Button>
             <Button onClick={handleSaveGroup}>
-              {editingGroup ? 'Update' : 'Create'} Group
+              {editingGroup ? "Update" : "Create"} Group
             </Button>
           </div>
         </div>
@@ -269,13 +289,20 @@ export function Groups() {
           size="sm"
         >
           <p className="text-gray-600 mb-6">
-            Are you sure you want to delete this group? This action cannot be undone.
+            Are you sure you want to delete this group? This action cannot be
+            undone.
           </p>
           <div className="flex justify-end gap-3">
-            <Button variant="secondary" onClick={() => setShowDeleteConfirm(null)}>
+            <Button
+              variant="secondary"
+              onClick={() => setShowDeleteConfirm(null)}
+            >
               Cancel
             </Button>
-            <Button variant="danger" onClick={() => handleDeleteGroup(showDeleteConfirm)}>
+            <Button
+              variant="danger"
+              onClick={() => handleDeleteGroup(showDeleteConfirm)}
+            >
               Delete
             </Button>
           </div>
