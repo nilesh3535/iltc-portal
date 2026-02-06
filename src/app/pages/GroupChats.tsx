@@ -6,6 +6,8 @@ import { Search, Send, Paperclip, Image, FileText, Upload } from "lucide-react";
 import { mockGroups } from "../utils/mockData";
 import { Modal } from "../components/ui/Modal";
 import { toast } from "sonner";
+import { Textarea } from "../components/ui/textarea";
+import { TextAreaInput } from "../components/ui/textareainput";
 export function GroupChats() {
   const [selectedTraveller, setSelectedTraveller] = useState<string | null>(
     null,
@@ -179,14 +181,14 @@ export function GroupChats() {
                     >
                       <FileText size={20} />
                     </button>
-                    <Input
-                      placeholder="Type a message..."
+                    <TextAreaInput
+                      placeholder="Type a message..." 
                       value={message}
                       onChange={(e) => setMessage(e.target.value)}
                       onKeyPress={(e) =>
                         e.key === "Enter" && handleSendMessage()
                       }
-                      className="flex-1"
+                      className="flex-1 "
                     />
                     <Button onClick={handleSendMessage}>
                       <Send size={18} />
